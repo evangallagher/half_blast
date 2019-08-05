@@ -42,7 +42,7 @@ for gene in data:
         subprocess.call(['makeblastdb', '-in', 'database_file', '-parse_seqids', '-title', '"half_blast"', '-dbtype', 'prot'])
         from subprocess import PIPE, run
 
-        command = ['blastp', '-db', 'database_file', '-query', 'query_file', '-outfmt', '6', '-evalue', '100']
+        command = ['blastp', '-db', 'database_file', '-query', 'query_file', '-outfmt', '6', '-evalue', '100', '-max_hsps', '1']
         result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
         outfile.write(result.stdout)
         outfile.close()
