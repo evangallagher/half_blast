@@ -1,6 +1,7 @@
 import subprocess
 
 openthisfile = 'halo_sal_genome.fa'
+writetothisfile = 'halo2_half_blast.out'
 data = []
 sequence = None
 seq_len = 0
@@ -25,13 +26,13 @@ protein.append(sequence)
 protein.append(seq_len)
 data.append(protein)
 
-with open('half_blast.out', 'a') as outfile:
+with open(writetothisfile, 'a') as outfile:
     outfile.write('Half Blast of: '+openthisfile+'\n'+'query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score')
     outfile.close()
     fastafile.close()
 
 for gene in data:
-    with open('database_file', 'w') as database_file, open('query_file', 'w') as query_file, open('half_blast.out', 'a') as outfile:
+    with open('database_file', 'w') as database_file, open('query_file', 'w') as query_file, open(writetothisfile, 'a') as outfile:
         midpoint = int((int(gene[2]))/2)
         first_half = gene[1][:(midpoint+1)]
         second_half = gene[1][(int(gene[2])-midpoint):]
