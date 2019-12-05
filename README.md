@@ -4,7 +4,7 @@ This program is used to determine if a protein is a doublet (i.e. composed of a 
 
 ![half_BLAST schematic](half_blast.png)
 
-## Backgroud
+## Background
 Many proteins act in conjunction with multiple copies of themselves. This is known as multimerization. When a protein works as a complex of two it is called dimerization. Although many proteins work as dimers, the ones I am insterested in are histones from the domain Archaea. These proteins are used to compacted DNA by forming dimers then binding to and bending DNA, these dimers can then form higher order complexes (usually in multiples of 6, it seems) to form nucleosomes. 
 
 ![arch_monomer](arch_nuc_one_monomer.png)
@@ -20,6 +20,7 @@ Halophilic archaea encode histones that are expressed as an obligate dimer, two 
 
 ## How it works
 Input = Multifasta file
+
 Output = File with results of each protein's first half BLASTed against its second half.
 1. Parse multifasta file.
 
@@ -61,7 +62,7 @@ AAC82810.1	382	37.5	56	29	2	12	67	24	73	7.92E-04	24.3		0.146596859
 AAC82814.1	917	25.301	83	61	1	121	202	214	296	
 ```
 
-# Developement
+# Development
 There are much better ways to do this.
 
 1. The major change that needs to happen is for the BLAST module to be converted to an internal python-based BLAST module (this is a good place to start I think https://biopython-tutorial.readthedocs.io/en/latest/notebooks/07%20-%20Blast.html#Running-BLAST-locally). The current method is very slow because:
@@ -73,3 +74,4 @@ There are much better ways to do this.
 4. We also need to make this into modular functions.
 5. The multifasta importing bit of this code seems to work pretty well, although I'm sure there are better ways to do it too.
 6. We should think about how we want to output this data as well, because the output now is super clunky.
+7. **Need to make run in parallel.**
