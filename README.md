@@ -1,11 +1,11 @@
 # Half BLAST
 ## Abstract
-This program is used to determine if a protein is a doublet (i.e. composed of a duplication of a protein fused to itself), by comparing the first half of the protein to the second using a BLAST algorithm. 
+This program is used to determine if a protein is a doublet (i.e. composed of a duplication of a protein fused to itself), by comparing the first half of the protein to the second using a BLAST algorithm.
 
 ![half_BLAST schematic](half_blast.png)
 
 ## Background
-Many proteins act in conjunction with multiple copies of themselves. This is known as multimerization. When a protein works as a complex of two it is called dimerization. Although many proteins work as dimers, the ones I am insterested in are histones from the domain Archaea. These proteins are used to compacted DNA by forming dimers then binding to and bending DNA, these dimers can then form higher order complexes (usually in multiples of 6, it seems) to form nucleosomes. 
+Many proteins act in conjunction with multiple copies of themselves. This is known as multimerization. When a protein works as a complex of two it is called dimerization. Although many proteins work as dimers, the ones I am insterested in are histones from the domain Archaea. These proteins are used to compact DNA by forming dimers then binding to and bending DNA, these dimers can then form higher order complexes (usually in multiples of 6, it seems) to form nucleosomes.
 
 ![arch_monomer](arch_nuc_one_monomer.png)
 ![arch_nuc](arch_nuc.png)
@@ -59,13 +59,19 @@ Half Blast of: halo_sal_genome.fa Contains: 2605 proteins
 "query acc.ver, protein length, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score"													
 AAC82793.1	772	36.471	170	93	5	18	182	24	183	5.40E-25	92		0.220207254
 AAC82810.1	382	37.5	56	29	2	12	67	24	73	7.92E-04	24.3		0.146596859
-AAC82814.1	917	25.301	83	61	1	121	202	214	296	
+AAC82814.1	917	25.301	83	61	1	121	202	214	296
 ```
 
-# Development
-There are much better ways to do this.
+# Local Blast
+'local_half_blast.py' is a module that attempts to increase reproducibility by allowing local machines to run this code.
+In 'half_blast.py' the code exits python due to the 'subprocess' command. local_half_blast fixes this by using built in python commands.
 
-1. The major change that needs to happen is for the BLAST module to be converted to an internal python-based BLAST module (this is a good place to start I think https://biopython-tutorial.readthedocs.io/en/latest/notebooks/07%20-%20Blast.html#Running-BLAST-locally). The current method is very slow because:
+
+
+# Development
+
+
+1. The major change that needs to happen is for the BLAST module to be converted to an internal python-based BLAST module  The current method is very slow because:
     1. It writes two files for inputs to the BLAST.
     2. Loops out of the python script to run a bash command.
     3. Accumulates all of these intermediate files in the working directory.
